@@ -117,15 +117,15 @@ export const People = ({ persons, setPersons }) => {
                         </div>
                         <div className="mb-3">
                                 <label for="url" className="form-label">Avatar</label>
-                                <select className="form-select" aria-label="Seleccione imagen" id="url" name='url' onChange={handleChange} >
-                                <option value="https://bootdey.com/img/Content/avatar/avatar1.png">Avatar1 El</option>
-                                <option value="https://bootdey.com/img/Content/avatar/avatar2.png">Avatar2 El</option>
-                                <option value="https://bootdey.com/img/Content/avatar/avatar3.png">Avatar3 Ella</option>
-                                <option value="https://bootdey.com/img/Content/avatar/avatar4.png">Avatar4 El</option>
-                                <option value="https://bootdey.com/img/Content/avatar/avatar5.png">Avatar5 El</option>
-                                <option value="https://bootdey.com/img/Content/avatar/avatar6.png">Avatar6 El</option>
-                                <option value="https://bootdey.com/img/Content/avatar/avatar7.png">Avatar7 El</option>
-                                <option value="https://bootdey.com/img/Content/avatar/avatar8.png">Avatar8 Ella</option>
+                                <select className="form-select" aria-label="Seleccione imagen" value={editedPerson.img} id="img" name='img' onChange={handleChange} >
+                                    <option {...editedPerson.url === "https://bootdey.com/img/Content/avatar/avatar1.png" ?? "selected"} value="https://bootdey.com/img/Content/avatar/avatar1.png">Avatar1 El</option>
+                                    <option {...editedPerson.url === "https://bootdey.com/img/Content/avatar/avatar2.png" ?? "selected"} value="https://bootdey.com/img/Content/avatar/avatar2.png">Avatar2 El</option>
+                                    <option {...editedPerson.url === "https://bootdey.com/img/Content/avatar/avatar3.png" ?? "selected"} value="https://bootdey.com/img/Content/avatar/avatar3.png">Avatar3 Ella</option>
+                                    <option {...editedPerson.url === "https://bootdey.com/img/Content/avatar/avatar4.png" ?? "selected"} value="https://bootdey.com/img/Content/avatar/avatar4.png">Avatar4 El</option>
+                                    <option {...editedPerson.url === "https://bootdey.com/img/Content/avatar/avatar5.png" ?? "selected"} value="https://bootdey.com/img/Content/avatar/avatar5.png">Avatar5 El</option>
+                                    <option {...editedPerson.url === "https://bootdey.com/img/Content/avatar/avatar6.png" ?? "selected"} value="https://bootdey.com/img/Content/avatar/avatar6.png">Avatar6 El</option>
+                                    <option {...editedPerson.url === "https://bootdey.com/img/Content/avatar/avatar7.png" ?? "selected"} value="https://bootdey.com/img/Content/avatar/avatar7.png">Avatar7 El</option>
+                                    <option {...editedPerson.url === "https://bootdey.com/img/Content/avatar/avatar8.png" ?? "selected"} value="https://bootdey.com/img/Content/avatar/avatar8.png">Avatar8 Ella</option>
                             </select>
                             </div>
                             <button type="submit" className="btn btn-primary" onClick={isEditing ? handleSave : handleCreate}>{isEditing ? 'Modificar' : 'Crear'}</button>
