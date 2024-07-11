@@ -17,6 +17,8 @@ export const People = ({ persons, setPersons }) => {
     // Estado para establecer si se está editando o no
     const [isEditing, setIsEditing] = useState(false);
 
+    // Estado para guardar la persona eliminada
+    const [personToDelete, setPersonToDelete] = useState(null);
     // Método para capturar los datos desde el formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -77,6 +79,21 @@ export const People = ({ persons, setPersons }) => {
         setEditedPerson({ name: '', role: '', img: '' });
     }
 
+    // Obtener el id de la persona a eliminar del array
+    const handleDelete = (id) => {
+        setPersonToDelete(id);
+    }
+
+    const confirmDelete = () => {
+        setPersons(persons.filter(person => person.id !== personToDelete));
+        setPersonToDelete(null);
+    }
+
+    const cancelDelete = () => {
+        setPersonToDelete(null);
+    }
+
+
     return (
         <div>
             <h2 className='text-center my-2'>IT TEAM</h2>
@@ -91,6 +108,7 @@ export const People = ({ persons, setPersons }) => {
                                     img={person.img}
                                     role={person.role}
                                     handleEdit={() => handleEdit(person.id)}
+                                    handleDelete={handleDelete}
                                 />
                             </div>
                         );
@@ -134,10 +152,31 @@ export const People = ({ persons, setPersons }) => {
                     </div>
                 </form>
             </div>
+            {/* Modal de confirmación de eliminación */}
+            <div id="deleteModal" className='modal fade' tabIndex="-1">
+                <div className='modal-dialog'>
+                    <div className='modal-content'>
+                        <div className='modal-header'>
+                            <h4 className='modal-title'>Confirmar Eliminación</h4>
+                            <button type="button" className='btn-close' data-bs-dismiss="modal" aria-label="Close" onClick={cancelDelete}></button>
+                        </div>
+                        <div className='modal-body'>
+                            <p>¿Estás seguro de eliminar a {persons.find(person => person.id === personToDelete)?.name}</p>
+                        </div>
+                        <div className='modal-footer'>
+                            <button type="button" className='btn btn-secondary' data-bs-dismiss="modal" onClick={cancelDelete}>Cancelar</button>
+                            <button type="button" className='btn btn-danger' data-bs-dismiss="modal" onClick={confirmDelete}>Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     )
 }
 People.propTypes = {
+    id: PropTypes.number.isRequired,
     persons: PropTypes.array,
-    setPersons: PropTypes.func
+    setPersons: PropTypes.func,
+    handleEdit: PropTypes.func
 }

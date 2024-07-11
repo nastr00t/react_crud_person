@@ -27,7 +27,7 @@ function App() {
   return (
     <div className='container'>
 
-      <People persons={persons} setPersons={setPersons}></People>
+      <People persons={persons} setPersons={setPersons} handle></People>
     </div>
   )
 }
