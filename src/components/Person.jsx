@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-export const Person = ({ name, role, img }) => {
+export const Person = ({ name, role, img, handleEdit }) => {
 
     return (
-        <div className='col'>
+        <div className='col my-1'>
 
             <div className='card' style={{ width: "18rem;" }}>
                 <img className='card-img-top' src={img} alt="person" />
@@ -13,7 +13,7 @@ export const Person = ({ name, role, img }) => {
                     <p className='card-text'>{role}</p>
                 </div>
                 <div className='container mb-4 text-center bg-light bg-gradient p-2'>
-                    <button className='btn btn-outline-success me-2'>Editar</button>
+                    <button className='btn btn-outline-success me-2' onClick={handleEdit}>Editar</button>
                     <button className='btn btn-outline-danger'>Eliminar</button>
                 </div>
 
@@ -28,5 +28,6 @@ Person.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired
+    img: PropTypes.string.isRequired,
+    handleEdit: PropTypes.function
 }
